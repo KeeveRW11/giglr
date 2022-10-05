@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS giglr_db;
+
+CREATE DATABASE giglr_db;
