@@ -41,7 +41,6 @@ router.get('/', (req,res)=> {
 
 //get a single post
 router.get('/:id', (req,res)=> {
-    console.log('=============');
     Post.findOne({
         where: {
             id: req.params.id
@@ -95,6 +94,18 @@ router.put('/upvote', (req,res)=>{
         });
     }
     
+})
+//TODO: check with group if we want to go for a downvote static in Post model
+router.put('/downvote', (req,res) => {
+
+    if (req.session) {
+        Post.downvote({...req.body, user_id: req.session.user_id}, {Vote, Comment, User})
+        .then(updatedVoteData => res.json(updatedVoteData))
+        .catch(err=>{
+            console.log(err);
+            res.status(500).json(err)
+        })
+    }
 })
 
 router.put('/:id', (req,res)=>{

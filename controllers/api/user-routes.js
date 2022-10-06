@@ -16,26 +16,27 @@ router.get('/', (req,res) => {
 // get one user by id
 router.get('/:id', (req,res)=>{
     User.findOne({
-        include: [
-            {
-                model: Post,
-                attributes: ['id','title','post_url','created_at']
-            },
-            {
-                model: Comment,
-                attributes: ['id','comment_text', 'created_at'],
-                include: {
-                    model: Post,
-                    attributes: ['title']
-                }
-            },
-            {
-                model: Post,
-                attributes: ['title'],
-                through: Vote,
-                as: 'voted_posts'
-            }
-        ],
+        //TODO: figure out what we need to include from other tables Post, Comments, Post through Vote
+        // include: [
+        //     {
+        //         model: Post,
+        //         attributes: ['id','title','post_url','created_at']
+        //     },
+        //     {
+        //         model: Comment,
+        //         attributes: ['id','comment_text', 'created_at'],
+        //         include: {
+        //             model: Post,
+        //             attributes: ['title']
+        //         }
+        //     },
+        //     {
+        //         model: Post,
+        //         attributes: ['title'],
+        //         through: Vote,
+        //         as: 'voted_posts'
+        //     }
+        // ],
         attributes: {exclude: ['password']},
         where: {
             id: req.params.id
@@ -54,7 +55,7 @@ router.get('/:id', (req,res)=>{
         })
 });
 
-//POST /api/users THINK create
+//create user
 router.post('/', (req,res)=> {
     //expects {username: 'string', email: '<string>@<string>.<string>', password: 'string'}
     User.create({
