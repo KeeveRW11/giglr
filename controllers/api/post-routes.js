@@ -15,7 +15,8 @@ const withAuth = (req,res,next) => {
 //get all posts
 router.get('/', (req,res)=> {
     Post.findAll({
-        attributes: ['id','post_url','title','created_at', [sequelize.literal('(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']],
+        attributes: ['id','post_url','title','created_at', [sequelize.literal('(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']], //downvote(sequelize.literal?)
+         //[sequelize.literal('(SELECT COUNT (*) FROM downvote WHERE post.id=downvote.post_id)'), 'downvote_count]?
         order:[['created_at','DESC']],
         include: [
             {
@@ -47,6 +48,7 @@ router.get('/:id', (req,res)=> {
         },
         //Query configuration
         attributes: ['id','post_url','title','created_at',[sequelize.literal('(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']],
+        //[sequelize.literal('(SELECT COUNT (*) FROM downvote WHERE post.id=downvote.post_id)'), 'downvote_count]?
         include: [
             {
                 model:User,
@@ -68,10 +70,10 @@ router.get('/:id', (req,res)=> {
 })
 
 router.post('/', (req,res)=>{
-    //expects {title: 'Taskmaster goes public!', post_url: 'https://taskmater.com/press', user_id: 1}
+    
     Post.create({
         title: req.body.title,
-        post_url: req.body.post_url,
+        post_text: req.body.post_text,
         user_id:req.session.user_id
     })
         .then(dbPostData=> res.json(dbPostData))
@@ -95,42 +97,42 @@ router.put('/upvote', (req,res)=>{
     }
     
 })
-//TODO: check with group if we want to go for a downvote static in Post model
-router.put('/downvote', (req,res) => {
+// //TODO: check with group if we want to go for a downvote static in Post model
+// router.put('/downvote', (req,res) => {
 
-    if (req.session) {
-        Post.downvote({...req.body, user_id: req.session.user_id}, {Vote, Comment, User})
-        .then(updatedVoteData => res.json(updatedVoteData))
-        .catch(err=>{
-            console.log(err);
-            res.status(500).json(err)
-        })
-    }
-})
+//     if (req.session) {
+//         Post.downvote({...req.body, user_id: req.session.user_id}, {Vote, Comment, User})
+//         .then(updatedVoteData => res.json(updatedVoteData))
+//         .catch(err=>{
+//             console.log(err);
+//             res.status(500).json(err)
+//         })
+//     }
+// })
 
-router.put('/:id', (req,res)=>{
-    Post.update(
-        {
-            title: req.body.title
-        },
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-        .then(dbPostData=>{
-            if(!dbPostData){
-                res.status(404).json({error: 'No post found with this id'})
-                return;
-            }
-            res.json(dbPostData)
-        })
-        .catch(err=>{
-            console.log(err);
-            res.status(500).json(err);
-        })
-})
+// router.put('/:id', (req,res)=>{
+//     Post.update(
+//         {
+//             title: req.body.title
+//         },
+//         {
+//             where: {
+//                 id: req.params.id
+//             }
+//         }
+//     )
+//         .then(dbPostData=>{
+//             if(!dbPostData){
+//                 res.status(404).json({error: 'No post found with this id'})
+//                 return;
+//             }
+//             res.json(dbPostData)
+//         })
+//         .catch(err=>{
+//             console.log(err);
+//             res.status(500).json(err);
+//         })
+// })
 
 router.delete('/:id', withAuth, (req,res)=>{
     Post.destroy({

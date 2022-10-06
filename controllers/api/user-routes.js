@@ -13,23 +13,25 @@ router.get('/', (req,res) => {
         });
 });
 
-// get one user by id
+// get one user by id and associated posts etc.
 router.get('/:id', (req,res)=>{
     User.findOne({
         //TODO: figure out what we need to include from other tables Post, Comments, Post through Vote
-        // include: [
-        //     {
-        //         model: Post,
-        //         attributes: ['id','title','post_url','created_at']
-        //     },
-        //     {
-        //         model: Comment,
-        //         attributes: ['id','comment_text', 'created_at'],
-        //         include: {
-        //             model: Post,
-        //             attributes: ['title']
-        //         }
-        //     },
+        include: [
+            {
+                model: Post,
+                attributes: ['id','title','post_text','created_at']//how to handle image pull
+            },
+            {
+                model: Comment,
+                attributes: ['id','comment_text', 'created_at'],
+                include: {
+                    model: Post,
+                    attributes: ['title']
+                }
+            }],
+
+        
         //     {
         //         model: Post,
         //         attributes: ['title'],
@@ -37,6 +39,15 @@ router.get('/:id', (req,res)=>{
         //         as: 'voted_posts'
         //     }
         // ],
+
+         //     {
+        //         model: Post,
+        //         attributes: ['title'],
+        //         through: Downvote,
+        //         as: 'downvoted_posts'
+        //     }
+        // ],
+        
         attributes: {exclude: ['password']},
         where: {
             id: req.params.id

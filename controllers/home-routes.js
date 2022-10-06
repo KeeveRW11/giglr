@@ -4,16 +4,16 @@ const { Post, User, Comment } = require('../models');
 
 
 router.get('/', (req,res)=>{
-    
-    console.log(req.session);
 
     Post.findAll({
         attributes: [
             'id',
-            'post_url',
+            'post_text',
             'title',
             'created_at',
             [sequelize.literal('(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+             //[sequelize.literal('(SELECT COUNT (*) FROM downvote WHERE post.id=downvote.post_id)'), 'downvote_count]?
+             //pull image/file; cloudinary
         ],
         include: [
             {
@@ -31,7 +31,7 @@ router.get('/', (req,res)=>{
         ]
     })
         .then(dbPostData=> {
-            //pass a single post object into the homepage template
+            
             const posts = dbPostData.map(post=>post.get({plain: true}));
             console.log(dbPostData[0]);
             res.render('homepage', {posts, loggedIn: req.session.loggedIn});
@@ -53,18 +53,7 @@ router.get('/login', (req, res) => {
   });
 
 router.get('/post/:id', (req,res)=>{
-    // //hardcoded data would call { post } as 2nd argument for res.render
-    // const post ={
-    //     id: 1,
-    //     post_url: 'https://handlebars.js.com/guide/',
-    //     title: 'Handlebars Docs',
-    //     created_at: new Date(),
-    //     vote_count: 10,
-    //     comments: [{},{}],
-    //     user:{
-    //         username: 'test_user'
-    //     }
-    // };
+   
     Post.findOne({
         where: {
             id: req.params.id
@@ -109,8 +98,6 @@ router.get('/post/:id', (req,res)=>{
             console.log(err);
             res.status(500).json(err);
         })
-
-   
 })
 
 module.exports = router;
