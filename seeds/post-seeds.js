@@ -7,11 +7,11 @@ const postData = [
         user_id: 1
     },
     {
-        title: BryPost2,
+        title: 'BryPost2',
         post_text: 'https://via.placeholder.com/500',
         user_id: 1
     },{
-        title: BryPost3,
+        title: 'BryPost3',
         post_text: 'https://via.placeholder.com/500',
         user_id: 1
     },
