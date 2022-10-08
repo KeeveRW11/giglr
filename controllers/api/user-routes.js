@@ -20,7 +20,7 @@ router.get('/:id', (req,res)=>{
         include: [
             {
                 model: Post,
-                attributes: ['id','title','post_text','created_at']//how to handle image pull
+                attributes: ['id','title','post_url','created_at']
             },
             {
                 model: Comment,
@@ -71,7 +71,6 @@ router.post('/', (req,res)=> {
     //expects {username: 'string', email: '<string>@<string>.<string>', password: 'string'}
     User.create({
         username: req.body.username,
-        email: req.body.email,
         password: req.body.password
     })
         .then(dbUserData => {
@@ -80,7 +79,7 @@ router.post('/', (req,res)=> {
                 req.session.username = dbUserData.username;
                 req.session.loggedIn = true;
 
-                req.json(dbUserData);
+                res.json(dbUserData);
             });
         })
         .catch(err => {
@@ -93,7 +92,7 @@ router.post('/login',(req,res)=>{
     //Query operation
     User.findOne({
         where:{
-            email: req.body.email
+            username: req.body.username
         }
     })
     .then(dbUserData=>{
