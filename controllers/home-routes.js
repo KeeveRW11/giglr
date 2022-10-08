@@ -8,7 +8,7 @@ router.get('/', (req,res)=>{
     Post.findAll({
         attributes: [
             'id',
-            'post_text',
+            'post_url',
             'title',
             'created_at',
             [sequelize.literal('(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
@@ -34,7 +34,7 @@ router.get('/', (req,res)=>{
             
             const posts = dbPostData.map(post=>post.get({plain: true}));
             console.log(dbPostData[0]);
-            res.render('homepage', {posts, loggedIn: req.session.loggedIn});
+            res.render('homepage', {posts, loggedIn: req.session.loggedIn, homePage: true});
         })
         .catch(err=>{
             console.log(err);

@@ -1,17 +1,17 @@
-<article class="mt-3">
-    <a href="/posts/{{post.id}}" class="text-dark">
+<article class="my-3">
+    <a href="/post/{{id}}" class="text-dark">
         <div class="card border border-dark" style="max-width: 480px;">
             <div class="card-body">
-                <h5 class="card-title">{{Post.title}}</h5>
+                <h5 class="card-title">{{title}}</h5>
             </div>
-            <img src="{{post.image}}" class="card-img-top img-fluid" alt="...">
+            <img src="{{post_url}}" class="card-img-top img-fluid" alt="...">
             
             <div class="card-body">
-                <h5 class="card-text">By: {{post.username}}</h5>
-                <div class="d-flex justify-content-between flex-wrap">
-                    <a href="#" class="card-link text-dark">{{post.upvote}}<i class="fa-regular fa-thumbs-up"></i></a>
-                    <a href="#" class="card-link text-dark">{{post.downvote}}<i class="fa-regular fa-thumbs-down"></i></a>
-                    <a href="#" class="card-link text-dark">{{post.comment.length}} {{format_pluralize "comment" post.comment.length}}</a>
+                <h5 class="card-text mb-3">By: {{user.username}}</h5>
+                <div class="d-flex justify-content-center flex-wrap">
+                    <a href="#" class="card-link text-dark" id="">{{vote_count}} <i class="fa-regular fa-circle-up"></i></a>                    
+                    {{!-- <a href="#" class="card-link text-dark">{{downvote}}<i class="fa-regular fa-thumbs-down"></i></a> --}}
+                    <a href="#" class="card-link text-dark">{{comments.length}} <i class="fa-regular fa-comment"></i></a>
                 </div>                    
             </div>
         </div>
