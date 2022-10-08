@@ -30,10 +30,7 @@ class Post extends Model {
           ]
         });
       });
-    }
-}
-
-class Post extends Model {
+    };
     static downvote(body, models) {
       return models.Vote.destroy({
         user_id: body.user_id,
@@ -77,7 +74,7 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        post_text: {
+        post_url: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -86,6 +83,7 @@ Post.init(
         },
         user_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model: 'user',
                 key: 'id'
