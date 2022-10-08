@@ -1,0 +1,29 @@
+<section class="d-flex justify-content-around flex-wrap">
+    <form action="" class="mt-3" id="edit-meme-form">
+        <div class="card border border-dark" style="max-width: 480px;">
+            <div class="card-body">
+                {{#if loggedIn}}
+                <input type="text" class="form-control" name="post-title" value="{{post.title}}">
+                {{else}}
+                <h5 class="card-title">{{post.title}}</h5>
+                {{/if}}
+            </div>
+            <img src="{{post.post_url}}" class="card-img-top img-fluid" alt="...">
+            
+            <div class="card-body">
+                <h5 class="card-text">By: {{post.user.username}}</h5>
+                <div class="d-flex justify-content-center flex-wrap">
+                    <a href="#" class="card-link text-dark">{{post.vote_count}} <i class="fa-regular fa-circle-up"></i></a>
+                    <a href="#" class="card-link text-dark">{{post.comments.length}} <i class="fa-regular fa-comment"></i></a>                    
+                </div>                    
+            </div>
+            {{#if loggedIn}}
+            <div class="card-body">
+                <button type="submit" class="btn btn-dark">Save</button>
+            </div>
+            {{/if}}
+        </div>
+    </form>        
+</section>
+
+<script src="/js/edit.js"></script>
