@@ -11,7 +11,7 @@
                 <div class="d-flex justify-content-between flex-wrap">
                     <a href="#" class="card-link text-dark">{{post.upvote}}<i class="fa-regular fa-thumbs-up"></i></a>
                     <a href="#" class="card-link text-dark">{{post.downvote}}<i class="fa-regular fa-thumbs-down"></i></a>
-                    <a href="#" class="card-link text-dark">{{post.comment.length}} {{pluralize "comment" post.comment.length}}</a>
+                    <a href="#" class="card-link text-dark">{{post.comment.length}} {{format_pluralize "comment" post.comment.length}}</a>
                 </div>                    
             </div>
         </div>
