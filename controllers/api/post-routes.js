@@ -2,15 +2,7 @@ const router = require('express').Router();
 const {Post, User, Vote, Comment} = require('../../models');
 const { route } = require('./user-routes');
 const sequelize = require('../../config/connection');
-// const withAuth = require('../../utils/auth');
-
-const withAuth = (req,res,next) => {
-    if (!req.session.user_id) {
-        res.redirect('/login');
-    } else {
-        next();
-    }
-};
+const withAuth = require('../../utils/auth');
 
 //get all posts
 router.get('/', (req,res)=> {
@@ -73,8 +65,9 @@ router.post('/', (req,res)=>{
     
     Post.create({
         title: req.body.title,
-        post_text: req.body.post_text,
-        user_id:req.session.user_id
+        post_url: req.body.post_url,
+        // user_id: req.body.user_id, //for insomnia testing only
+        user_id:req.session.user_id //for user that logged in
     })
         .then(dbPostData=> res.json(dbPostData))
         .catch(err=>{
