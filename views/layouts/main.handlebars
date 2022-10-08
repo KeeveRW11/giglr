@@ -11,24 +11,27 @@
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">Gigglr</a>
+            <a class="navbar-brand" href="/"><i class="fa-regular fa-face-grin-squint-tears"></i> Giglr</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item {{#if homePage}} active {{/if}}">
                         <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Upload</a>
+                    <li class="nav-item {{#if upload}} active {{/if}}">
+                        <a class="nav-link" href="/upload">Upload</a>
                     </li>
+                    {{#if loggedIn}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Logout</a>
+                    {{else}}
+                    <li class="nav-item {{#if login}} active {{/if}}">
+                        <a class="nav-link" href="/signup">Sign up / Login</a>
                     </li>
+                    {{/if}}                    
                 </ul>
             </div>
         </div>     
