@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
+const withAuth = require('../utils/auth');
 
 
 router.get('/', (req,res)=>{
@@ -49,13 +50,16 @@ router.get('/login', (req, res) => {
         return;
     }
 
-    res.render('login');
+    res.render('login', {login:true});
 });
 
 router.get('/signup', (req, res) => {
-    res.render('signup');
+    res.render('signup', {login:true});
 })
 
+router.get('/upload', withAuth, (req, res) => {
+    res.render('upload', {upload:true});
+})
 router.get('/post/:id', (req,res)=>{
    
     Post.findOne({
