@@ -12,18 +12,41 @@
             
             <div class="card-body">
                 <h5 class="card-text">By: {{post.user.username}}</h5>
-                <div class="d-flex justify-content-center flex-wrap">
-                    <a href="#" class="card-link text-dark">{{post.vote_count}} <i class="fa-regular fa-circle-up"></i></a>
-                    <a href="#" class="card-link text-dark">{{post.comments.length}} <i class="fa-regular fa-comment"></i></a>                    
+                <div class="d-flex justify-content-around flex-wrap">
+                    <a href="#" class="card-link text-dark"><i class="fa-regular fa-circle-up"></i> {{post.vote_count}} </a>
+                    <a href="#" class="card-link text-dark" data-toggle="modal" data-target="#add-comments"><i class="fa-regular fa-comment"></i> {{post.comments.length}} </a>                    
                 </div>                    
             </div>
             {{#if loggedIn}}
             <div class="card-body">
-                <button type="submit" class="btn btn-dark">Save</button>
+                <button type="submit" class="btn btn-dark" id="save-button">Save</button>
+                <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
             </div>
             {{/if}}
         </div>
-    </form>        
+    </form> 
+
+    <div class="modal fade" id="add-comments" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add new comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="" id="add-comment-form">
+                    <div class="modal-body">
+                        <input type="textbox" name="comment-text" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-dark">submit</button>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </div>       
 </section>
 
 <script src="/js/edit.js"></script>

@@ -8,10 +8,9 @@
             
             <div class="card-body">
                 <h5 class="card-text mb-3">By: {{user.username}}</h5>
-                <div class="d-flex justify-content-center flex-wrap">
-                    <a href="#" class="card-link text-dark" id="">{{vote_count}} <i class="fa-regular fa-circle-up"></i></a>                    
-                    {{!-- <a href="#" class="card-link text-dark">{{downvote}}<i class="fa-regular fa-thumbs-down"></i></a> --}}
-                    <a href="#" class="card-link text-dark">{{comments.length}} <i class="fa-regular fa-comment"></i></a>
+                <div class="d-flex justify-content-around flex-wrap">
+                    <span class="text-dark">{{vote_count}} <i class="fa-regular fa-circle-up"></i></span>
+                    <span class="text-dark">{{comments.length}} <i class="fa-regular fa-comment"></i></span>
                 </div>                    
             </div>
         </div>   
