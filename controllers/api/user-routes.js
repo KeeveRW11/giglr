@@ -20,7 +20,7 @@ router.get('/:id', (req,res)=>{
         include: [
             {
                 model: Post,
-                attributes: ['id','title','post_text','created_at']//how to handle image pull
+                attributes: ['id','title','post_url','created_at']//how to handle image pull
             },
             {
                 model: Comment,
