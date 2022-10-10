@@ -9,25 +9,22 @@
         <div class="card-body">
             <h5 class="card-text">By: {{post.user.username}}</h5>
             {{#if loggedIn}}
-            <div class="d-flex justify-content-around flex-wrap">
+            <div class="d-flex justify-content-around flex-wrap mb-2">
                 <a href="#" class="card-link text-dark"><i class="fa-regular fa-circle-up"></i> {{post.vote_count}} </a>
                 <a href="#" class="card-link text-dark" data-toggle="modal" data-target="#add-comments"><i class="fa-regular fa-comment"></i> {{post.comments.length}} </a>                    
             </div>
             {{else}}
-            <div class="d-flex justify-content-around flex-wrap">
+            <div class="d-flex justify-content-around flex-wrap mb-2">
                 <span class="text-dark"><i class="fa-regular fa-circle-up"></i> {{post.vote_count}}</span>
                 <span class="text-dark"><i class="fa-regular fa-comment"></i> {{post.comments.length}}</span>                                        
             </div>
-            {{/if}}                                
+            {{/if}}
+            <div class="card-body border-top border-secondary d-flex flex-column">
+                <span class="font-weight-bold">Comment Author</span>
+                <span>comment text</span>
+            </div>                                
         </div>            
-    </div>    
-
-    <div class="container" style="max-width: 480px;">
-        <div class="d-flex flex-column align-items-start border-bottom border-secondary">
-            <span class="font-weight-bold">Comment Author</span>
-            <span>comment text</span>
-        </div>
-    </div>
+    </div> 
 
     <div class="modal fade" id="add-comments" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
