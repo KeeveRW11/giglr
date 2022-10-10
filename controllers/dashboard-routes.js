@@ -36,7 +36,7 @@ router.get('/', withAuth,  (req,res)=>{
         .then(dbPostData=>{
             //serialize data before passing to template
             const posts = dbPostData.map(post=>post.get({plain: true}))
-            res.render('dashboard', {posts, loggedIn: true, dashboard:true})
+            res.render('dashboard', {posts, loggedIn: req.session.loggedIn, dashboard:true})
         })
         .catch(err=>{
             console.log(err);
