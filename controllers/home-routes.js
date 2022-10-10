@@ -63,7 +63,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.get("/upload", withAuth, (req, res) => {
-  res.render("upload", { upload: true });
+  res.render("upload", { loggedIn:req.session.loggedIn, upload: true });
 });
 
 router.get("/post/:id", (req, res) => {
