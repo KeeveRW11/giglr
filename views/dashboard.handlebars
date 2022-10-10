@@ -1,4 +1,10 @@
-<section class="d-flex justify-content-around flex-wrap mt-3">    
+<section class="d-flex justify-content-around flex-wrap mt-3"> 
+    {{#if posts.length}}
+    {{!-- Blank --}}
+    {{else}}
+    <span>No posts to show</span>
+    {{/if}} 
+      
     {{#each posts as |post|}}
         <article class="mb-3">
             <form action="" id="edit-meme-form">
