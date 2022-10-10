@@ -4,11 +4,7 @@
             <form action="" id="edit-meme-form">
                 <div class="card border border-dark" style="max-width: 480px;" id="{{post.id}}">
                     <div class="card-body">
-                        {{#if loggedIn}}
-                        <input type="text" class="form-control" name="post-title" value="{{post.title}}">
-                        {{else}}
-                        <h5 class="card-title">{{post.title}}</h5>
-                        {{/if}}
+                        <input type="text" class="form-control" name="post-title" value="{{post.title}}">                        
                     </div>
                     <img src="{{post.post_url}}" class="card-img-top img-fluid" alt="...">
                     
