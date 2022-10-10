@@ -1,9 +1,34 @@
 const router = require('express').Router();
 const { Comment } = require('../../models');
 
+
+
 //get all comments
 router.get('/', (req,res) => {
     Comment.findAll(
+        {
+            attributes: [
+                'id',
+                'comment_text',
+                'post_id',
+                'user_id'
+            ]
+        }
+    )
+        .then(dbCommentData => res.json(dbCommentData))
+        .catch(err=>{
+            console.log(err);
+            res.status(400).json(err);
+        })
+})
+
+//get one comment
+router.get('/:id', (req,res) => {
+    Comment.findOne(
+        {where: {
+            id:req.params.id
+            }
+        },
         {
             attributes: [
                 'id',
@@ -26,8 +51,9 @@ router.post('/', (req,res) => {
         Comment.create(
             {
                 comment_text: req.body.comment_text,
-                post_id: req.body.post_id,
-                user_id: req.session.id
+                //user_id: req.body.user_id, for testing under insomnia
+                user_id: req.session.id, //takes user id from session (user that is currently logged in)
+                post_id: req.body.post_id
             }
         )
             .then(dbCommentData => res.json(dbCommentData))

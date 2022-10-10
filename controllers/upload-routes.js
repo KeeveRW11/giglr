@@ -40,7 +40,7 @@ router.get('/',  (req,res)=>{
             }
             //serialize data before passing to template
             const posts = dbPostData.map(post => post.get({plain:true})); 
-            res.render('dashboard', {posts, loggedIn: req.session.loggedIn, dashboard:true})
+            res.render('upload', {posts, loggedIn: req.session.loggedIn, dashboard:true})
         })
         .catch(err=>{
             console.log(err);
