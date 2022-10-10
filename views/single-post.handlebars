@@ -1,0 +1,53 @@
+<section class="d-flex flex-column align-items-center">
+    
+    <div class="card border border-dark my-3" style="max-width: 480px;">
+        <div class="card-body">
+            <h5 class="card-title">{{post.title}}</h5>
+        </div>
+        <img src="{{post.post_url}}" class="card-img-top img-fluid" alt="...">
+        
+        <div class="card-body">
+            <h5 class="card-text">By: {{post.user.username}}</h5>
+            {{#if loggedIn}}
+            <div class="d-flex justify-content-around flex-wrap mb-2">
+                <a href="#" class="card-link text-dark"><i class="fa-regular fa-circle-up"></i> {{post.vote_count}} </a>
+                <a href="#" class="card-link text-dark" data-toggle="modal" data-target="#add-comments"><i class="fa-regular fa-comment"></i> {{post.comments.length}} </a>                    
+            </div>
+            {{else}}
+            <div class="d-flex justify-content-around flex-wrap mb-2">
+                <span class="text-dark"><i class="fa-regular fa-circle-up"></i> {{post.vote_count}}</span>
+                <span class="text-dark"><i class="fa-regular fa-comment"></i> {{post.comments.length}}</span>                                        
+            </div>
+            {{/if}}
+            <div class="card-body border-top border-secondary d-flex flex-column">
+                <span class="font-weight-bold">Comment Author</span>
+                <span>comment text</span>
+            </div>                                
+        </div>            
+    </div> 
+
+    <div class="modal fade" id="add-comments" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add new comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="" id="add-comment-form">
+                    <div class="modal-body">
+                        <input type="textbox" name="comment-text" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-dark">submit</button>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </div>       
+</section>
+
+<script src="/js/vote.js"></script>
+<script src="/js/comment.js"></script>
