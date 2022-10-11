@@ -112,6 +112,7 @@ router.get("/post/:id", (req, res) => {
         post,
         loggedIn: req.session.loggedIn,
         singlePage: true,
+        pageName:'single-post'
       });
     })
     .catch((err) => {
