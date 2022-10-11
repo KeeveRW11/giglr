@@ -1,6 +1,6 @@
 <section class="d-flex flex-column align-items-center">
     
-    <div id="meme-card" data-id="{{post.id}}" class="card border border-dark my-3" style="max-width: 480px;">
+    <div id="meme-card" class="card border border-dark my-3" style="max-width: 480px;">
         <div class="card-body">
             <h5 class="card-title">{{post.title}}</h5>
         </div>
@@ -10,8 +10,8 @@
             <h5 class="card-text">By: {{post.user.username}}</h5>
             {{#if loggedIn}}
             <div class="d-flex justify-content-around flex-wrap mb-2">
-                <a href="#" class="card-link text-dark"><i class="fa-regular fa-circle-up"></i> {{post.vote_count}} </a>
-                <a href="#" class="card-link text-dark" data-toggle="modal" data-target="#add-comments"><i class="fa-regular fa-comment"></i> {{post.comments.length}} </a>                    
+                <button type="button" class="btn btn-secondary" id="vote-btn" data-id="{{post.id}}" data-page="{{pageName}}"><span class="fa-regular fa-circle-up" id="vote-btn" data-id="{{post.id}}" data-page="{{pageName}}"></span> {{post.vote_count}}</button>
+                <button type="button" class="btn btn-secondary" id="comment-btn" data-id="{{post.id}}" data-page="{{pageName}}" data-toggle="modal" data-target="#add-comments"><i class="fa-regular fa-comment" id="comment-btn" data-id="{{post.id}}" data-page="{{pageName}}"></i> {{post.comments.length}}</button>                                   
             </div>
             {{else}}
             <div class="d-flex justify-content-around flex-wrap mb-2">
