@@ -7,7 +7,7 @@
       
     {{#each posts as |post|}}
         <article class="mb-3">
-            <form action="" id="edit-meme-form">
+            <form action="" class="edit-meme-form" id="{{@index}}">
                 <div class="card border border-dark" style="max-width: 480px;" id="{{post.id}}">
                     <div class="card-body">
                         <input type="text" class="form-control" name="post-title" value="{{post.title}}">                        
@@ -22,8 +22,8 @@
                         </div>                                           
                     </div>
                     <div class="card-body">
-                        <button type="submit" class="btn btn-dark" id="save-button">Update</button>
-                        <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
+                        <button form="{{@index}}" type="submit" class="btn btn-dark" id="save-button">Update</button>
+                        <button form="{{@index}}" type="submit" class="btn btn-danger" id="delete-button">Delete</button>
                     </div>
                     {{#each post.comments as |comment|}}
                     <div class="card-body border-top border-secondary d-flex flex-column">
