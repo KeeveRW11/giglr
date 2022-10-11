@@ -28,6 +28,7 @@ async function editFormHandler (event) {
         }
     } else if (event.submitter.id === 'delete-button') {
         
+        console.log(id);
         const response = await fetch (`api/posts/${id}`, {
             method: 'DELETE',
         })
