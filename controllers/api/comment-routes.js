@@ -49,8 +49,7 @@ router.post('/', (req,res) => {
         Comment.create(
             {
                 comment_text: req.body.comment_text,
-                //user_id: req.body.user_id, for testing under insomnia
-                user_id: req.session.user_id, //takes user id from session (user that is currently logged in)
+                user_id: req.session.user_id, 
                 post_id: req.body.post_id
             }
         )
