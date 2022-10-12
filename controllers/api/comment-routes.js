@@ -17,7 +17,6 @@ router.get('/', (req,res) => {
     )
         .then(dbCommentData => res.json(dbCommentData))
         .catch(err=>{
-            console.log(err);
             res.status(400).json(err);
         })
 })
@@ -40,7 +39,6 @@ router.get('/:id', (req,res) => {
     )
         .then(dbCommentData => res.json(dbCommentData))
         .catch(err=>{
-            console.log(err);
             res.status(400).json(err);
         })
 })
@@ -58,7 +56,6 @@ router.post('/', (req,res) => {
         )
             .then(dbCommentData => res.json(dbCommentData))
             .catch(err=>{
-                console.log(err);
                 res.status(400).json(err);
             })
     }
@@ -83,7 +80,6 @@ router.put('/:id', (req,res)=>{
             res.json(updatedCommentsData)
         })
         .catch(err=>{
-            console.log(err);
             res.status(400).json(err);
         })
 })
@@ -103,7 +99,6 @@ router.delete('/:id', (req,res) => {
             res.json(deletedCommentData)
         })
         .catch(err=>{
-            console.log(err);
             res.status(400).json(err);
         })
 })
