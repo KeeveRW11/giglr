@@ -1,4 +1,4 @@
-let post_id 
+let post_id;
 
 async function commentFormHandler(event) {
     event.preventDefault();
@@ -18,8 +18,8 @@ async function commentFormHandler(event) {
         });
 
         if (response.ok) {
-            post_id = ''
-            document.location.replace('/dashboard');
+            post_id = '';
+            document.location.reload();
         } else {
             alert(response.statusText);
         }
@@ -28,10 +28,10 @@ async function commentFormHandler(event) {
 }
 
 async function commentClickHandler(event) {
-    const commentButton = event.target
+    const commentButton = event.target;
 
     if (commentButton.matches('#comment-btn')) {
-        post_id = commentButton.dataset.id
+        post_id = commentButton.dataset.id;
     }
     
 }  
