@@ -23,7 +23,7 @@ Collaborators:
 - Mahesh Ramdas [Git Hub](https://github.com/maheshramdas)
 - Damon Paoletti [Git Hub](https://github.com/DamonPaoletti)
 
-NPM Packages:
+## NPM Packages:
 - Cloudinary 
 - Mysql2  
 - Bcrypt
