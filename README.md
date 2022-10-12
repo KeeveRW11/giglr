@@ -1,5 +1,5 @@
 # giglr
- A meme website for posting memes which could be images or videos. The user can additional comment or vote on any meme.
+ A meme website for posting memes which could be images or videos. The user can also comment or vote on any meme.
 
 ## Description
 1) The website is responsive and interactive website containing views like home, dashboard, login, logout
