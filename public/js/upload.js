@@ -7,7 +7,6 @@ const myWidget = cloudinary.createUploadWidget(
         sources: ['local', 'url','facbook', 'instagram', 'shutterstock', 'gettyimages', 'istock','unsplash', 'google_drive'],
     },
     (error,result) => {
-        console.log(result);
         if (!error && result && result.event === 'success'){
             sendImage(result.info);           
         }
