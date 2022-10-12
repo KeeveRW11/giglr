@@ -13,7 +13,11 @@ async function voteClickHandler(event){
 
         if(response.ok){
             if(btnClick.dataset.page === 'single-post'){
-                document.location.replace(`/post/${btnClick.dataset.id}`);
+                document.location.reload();
+            }
+            console.log(btnClick.dataset.page);
+            if(btnClick.dataset.page === 'dashboard'){
+                document.location.reload();
             }
         } else {
             alert(response.statusText);
@@ -21,4 +25,4 @@ async function voteClickHandler(event){
     }
 }
 
-document.querySelector('#meme-card').addEventListener('click', voteClickHandler);
+document.querySelector('#meme').addEventListener('click', voteClickHandler);

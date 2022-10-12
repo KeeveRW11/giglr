@@ -1,6 +1,6 @@
 <section class="d-flex flex-column align-items-center">
     
-    <div id="meme-card" class="card border border-dark my-3" style="max-width: 480px;">
+    <div id="meme" class="card border border-dark my-3 edit-meme-form" style="max-width: 480px;">
         <div class="card-body">
             <h5 class="card-title">{{post.title}}</h5>
         </div>
@@ -19,10 +19,12 @@
                 <span class="text-dark"><i class="fa-regular fa-comment"></i> {{post.comments.length}}</span>                                        
             </div>
             {{/if}}
+            {{#each post.comments as |comment|}}
             <div class="card-body border-top border-secondary d-flex flex-column">
-                <span class="font-weight-bold">Comment Author</span>
-                <span>comment text</span>
-            </div>                                
+                <span class="font-weight-bold">{{user.username}}</span>
+                <span>{{comment_text}}</span>
+            </div> 
+            {{/each}}                               
         </div>            
     </div> 
 
