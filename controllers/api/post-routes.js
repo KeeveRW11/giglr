@@ -7,8 +7,7 @@ const withAuth = require('../../utils/auth');
 //get all posts
 router.get('/', (req,res)=> {
     Post.findAll({
-        attributes: ['id','post_url','title','created_at', [sequelize.literal('(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']], //downvote(sequelize.literal?)
-         //[sequelize.literal('(SELECT COUNT (*) FROM downvote WHERE post.id=downvote.post_id)'), 'downvote_count]?
+        attributes: ['id','post_url','title','created_at', [sequelize.literal('(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']], 
         order:[['created_at','DESC']],
         include: [
             {
@@ -38,9 +37,8 @@ router.get('/:id', (req,res)=> {
         where: {
             id: req.params.id
         },
-        //Query configuration
         attributes: ['id','post_url','title','created_at',[sequelize.literal('(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']],
-        //[sequelize.literal('(SELECT COUNT (*) FROM downvote WHERE post.id=downvote.post_id)'), 'downvote_count]?
+
         include: [
             {
                 model:User,
@@ -56,7 +54,6 @@ router.get('/:id', (req,res)=> {
             res.json(dbPostData);
         })
         .catch(err=>{
-            console.log(err);
             res.status(500).json(err);
         })
 })
@@ -66,12 +63,10 @@ router.post('/', (req,res)=>{
     Post.create({
         title: req.body.title,
         post_url: req.body.post_url,
-        // user_id: req.body.user_id, //for insomnia testing only
-        user_id:req.session.user_id //for user that logged in
+        user_id:req.session.user_id 
     })
         .then(dbPostData=> res.json(dbPostData))
         .catch(err=>{
-            console.log(err);
             res.status(500).json(err);
         })
 })
@@ -84,24 +79,11 @@ router.put('/upvote', (req,res)=>{
         Post.upvote({...req.body, user_id: req.session.user_id}, {Vote, Comment, User})
         .then(updatedVoteData => res.json(updatedVoteData))
         .catch(err=>{
-            console.log(err);
             res.status(500).json(err);
         });
     }
     
 })
-// //TODO: check with group if we want to go for a downvote static in Post model
-// router.put('/downvote', (req,res) => {
-
-//     if (req.session) {
-//         Post.downvote({...req.body, user_id: req.session.user_id}, {Vote, Comment, User})
-//         .then(updatedVoteData => res.json(updatedVoteData))
-//         .catch(err=>{
-//             console.log(err);
-//             res.status(500).json(err)
-//         })
-//     }
-// })
 
 router.put('/:id', withAuth, (req,res)=>{
     Post.update(
@@ -122,7 +104,6 @@ router.put('/:id', withAuth, (req,res)=>{
             res.json(dbPostData)
         })
         .catch(err=>{
-            console.log(err);
             res.status(500).json(err);
         })
 })
@@ -141,7 +122,6 @@ router.delete('/:id', withAuth, (req,res)=>{
             res.json(dbPostData)
         })
         .catch(err=>{
-            console.log(err);
             res.status(500).json(err);
         })
 })
