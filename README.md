@@ -1,4 +1,5 @@
 # giglr
+![License: gpl](https://img.shields.io/static/v1?label=license&message=gpl&color=green)
  A meme website for posting memes which could be images or videos. The user can also comment or vote on any meme.
 
 ## Description
