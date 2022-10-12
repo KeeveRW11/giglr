@@ -2,7 +2,7 @@
 # giglr 
 
 ## Description
- Giglr is an application made for posting the most amazing and  memes to a close community of developers. The application is very interactive and secure and offers an amazing user interface as well as experience that will have users hooked and wanting to come back for more. The application is built with various technologies which can be found in the [Technologies Used](#technologies-used) section. This project utilizes RESTful API and authentication. It follows the concepts of Object-Oriented Programming, Object-Relational Mapping and Model-View-Controllers
+ Giglr is an application made for posting the most amazing memes to a close community of developers. The application is very interactive and secure and offers an amazing user interface as well as experience that will have users hooked and wanting to come back for more. The application is built with various technologies which can be found in the [Technologies Used](#technologies-used) section. This project utilizes RESTful API and authentication. It follows the concepts of Object-Oriented Programming, Object-Relational Mapping and Model-View-Controllers
 
 ## User Story
 As a developer looking to share hilarious and sometimes outright stupid memes...
