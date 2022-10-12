@@ -1,3 +1,18 @@
+function displayModal(errorString){
+    var galleryModal = new bootstrap.Modal(
+        document.getElementById("error-handling"),
+        {
+          keyboard: false,
+        }
+      );
+      
+      galleryModal.show();
+      
+      const errorEl = document.querySelector('#error-text');
+      
+      errorEl.textContent = errorString;
+}
+
 async function editFormHandler (event) {
     event.preventDefault();
 
@@ -18,9 +33,15 @@ async function editFormHandler (event) {
         })
     
         if (response.ok) {
-            document.location.replace('/dashboard')
+            document.location.reload();
         } else {
-            alert(response.statusText)
+           if(response.status === 404){
+            displayModal('Post not found');
+           }
+
+           if(response.status === 500){
+            displayModal('Unable to update the post');
+           }
         }
     } else if (event.submitter.id === 'delete-button') {
         
@@ -31,7 +52,12 @@ async function editFormHandler (event) {
         if (response.ok) {
             document.location.replace('/dashboard')
         } else {
-            alert(response.statusText)
+            if(response.status === 404){
+                displayModal('Post not found');
+            }
+            if(response.status === 500){
+                displayModal('Unable to delete post at this time');
+            }
         }
     }
     

@@ -97,7 +97,7 @@ router.put('/:id', withAuth, (req,res)=>{
         }
     )
         .then(dbPostData=>{
-            if(!dbPostData){
+            if(!dbPostData[0]){
                 res.status(404).json({error: 'No post found with this id'})
                 return;
             }
