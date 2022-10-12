@@ -15,9 +15,7 @@ router.get("/", (req, res) => {
           "(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)"
         ),
         "vote_count",
-      ],
-      //[sequelize.literal('(SELECT COUNT (*) FROM downvote WHERE post.id=downvote.post_id)'), 'downvote_count]?
-      //pull image/file; cloudinary
+      ]
     ],
     include: [
       {
@@ -36,7 +34,6 @@ router.get("/", (req, res) => {
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
-      console.log(dbPostData[0]);
       res.render("homepage", {
         posts,
         loggedIn: req.session.loggedIn,
@@ -44,7 +41,6 @@ router.get("/", (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json(err);
     });
 });
@@ -116,7 +112,6 @@ router.get("/post/:id", (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json(err);
     });
 });

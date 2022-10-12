@@ -6,7 +6,6 @@ const withAuth = require('../utils/auth');
 router.get('/', withAuth,  (req,res)=>{
     Post.findAll({
         where: {
-            //use the ID from the session
             user_id: req.session.user_id
         },
         attributes:[
@@ -15,8 +14,6 @@ router.get('/', withAuth,  (req,res)=>{
             'title',
             'created_at',
             [sequelize.literal(`(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)`), 'vote_count']
-             //[sequelize.literal('(SELECT COUNT (*) FROM downvote WHERE post.id=downvote.post_id)'), 'downvote_count]?
-             //how to pull image/file; cloudinary
         ],
         include: [
             {
@@ -39,7 +36,6 @@ router.get('/', withAuth,  (req,res)=>{
             res.render('dashboard', {posts, loggedIn: req.session.loggedIn, dashboard:true})
         })
         .catch(err=>{
-            console.log(err);
             res.status(500).json(err);
         })   
 })

@@ -17,7 +17,6 @@ router.get('/', (req,res) => {
     )
         .then(dbCommentData => res.json(dbCommentData))
         .catch(err=>{
-            console.log(err);
             res.status(400).json(err);
         })
 })
@@ -40,7 +39,6 @@ router.get('/:id', (req,res) => {
     )
         .then(dbCommentData => res.json(dbCommentData))
         .catch(err=>{
-            console.log(err);
             res.status(400).json(err);
         })
 })
@@ -51,14 +49,12 @@ router.post('/', (req,res) => {
         Comment.create(
             {
                 comment_text: req.body.comment_text,
-                //user_id: req.body.user_id, for testing under insomnia
-                user_id: req.session.user_id, //takes user id from session (user that is currently logged in)
+                user_id: req.session.user_id, 
                 post_id: req.body.post_id
             }
         )
             .then(dbCommentData => res.json(dbCommentData))
             .catch(err=>{
-                console.log(err);
                 res.status(400).json(err);
             })
     }
@@ -83,7 +79,6 @@ router.put('/:id', (req,res)=>{
             res.json(updatedCommentsData)
         })
         .catch(err=>{
-            console.log(err);
             res.status(400).json(err);
         })
 })
@@ -103,7 +98,6 @@ router.delete('/:id', (req,res) => {
             res.json(deletedCommentData)
         })
         .catch(err=>{
-            console.log(err);
             res.status(400).json(err);
         })
 })
