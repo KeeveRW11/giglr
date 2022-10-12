@@ -1,3 +1,18 @@
+function displayModal(errorString){
+    var galleryModal = new bootstrap.Modal(
+        document.getElementById("error-handling"),
+        {
+          keyboard: false,
+        }
+      );
+      
+      galleryModal.show();
+      
+      const errorEl = document.querySelector('#error-text');
+      
+      errorEl.textContent = errorString;
+}
+
 async function voteClickHandler(event){
     const btnClick = event.target;
     if(btnClick.matches('#vote-btn')){
@@ -19,7 +34,7 @@ async function voteClickHandler(event){
                 document.location.reload();
             }
         } else {
-            alert(response.statusText);
+            displayModal('You have already upvoted the post');
         }
     }
 }
