@@ -1,3 +1,18 @@
+function displayModal(errorString){
+    var galleryModal = new bootstrap.Modal(
+        document.getElementById("error-handling"),
+        {
+          keyboard: false,
+        }
+      );
+      
+      galleryModal.show();
+      
+      const errorEl = document.querySelector('#error-text');
+      
+      errorEl.textContent = errorString;
+  }
+
 async function logoutClickHandler(){
     const response = await fetch('/api/users/logout', {
         method:'POST',
@@ -7,7 +22,7 @@ async function logoutClickHandler(){
     if(response.ok){
         document.location.replace('/');
     } else {
-        alert(response.statusText);
+        displayModal('Invalid operation');
     }
 }
 
