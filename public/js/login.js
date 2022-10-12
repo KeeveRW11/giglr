@@ -32,10 +32,7 @@ async function loginFormHandler(event) {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        if(response.statusText){
-          displayModal('Invalid credentials');
-        }
-        
+          displayModal('Invalid credentials');        
       }
     } else {
       displayModal('Please enter all the required information');

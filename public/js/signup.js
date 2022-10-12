@@ -1,3 +1,18 @@
+function displayModal(errorString){
+  var galleryModal = new bootstrap.Modal(
+      document.getElementById("error-handling"),
+      {
+        keyboard: false,
+      }
+    );
+    
+    galleryModal.show();
+    
+    const errorEl = document.querySelector('#error-text');
+    
+    errorEl.textContent = errorString;
+}
+
 async function signupFormHandler(event) {
     event.preventDefault();
 
@@ -17,8 +32,10 @@ async function signupFormHandler(event) {
      if (response.ok) {
       document.location.replace('/dashboard');
     } else {
-      alert(response.statusText);
+      displayModal(`A user by the username ${username} already exists`);
     }
+  } else {
+    displayModal('Please enter all the required information');
   }
 }
 
