@@ -10,8 +10,8 @@
 4) The user is able to vote
 
 ## Screenshots
-![image (1)](https://user-images.githubusercontent.com/109004012/195243174-5cc0ca7e-83b4-4e20-aab2-d2de6b797879.png)
 ![image (2)](https://user-images.githubusercontent.com/109004012/195243172-19a5955e-1483-41e3-a701-42530c927e90.png)
+![image (1)](https://user-images.githubusercontent.com/109004012/195243174-5cc0ca7e-83b4-4e20-aab2-d2de6b797879.png)
 ![image](https://user-images.githubusercontent.com/109004012/195243169-d6c7a4a2-45a5-42ee-a67d-5e2523631574.png)
 
 ## URLs
