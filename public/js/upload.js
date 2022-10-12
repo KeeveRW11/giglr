@@ -1,3 +1,18 @@
+function displayModal(errorString){
+    var galleryModal = new bootstrap.Modal(
+        document.getElementById("error-handling"),
+        {
+          keyboard: false,
+        }
+      );
+      
+      galleryModal.show();
+      
+      const errorEl = document.querySelector('#error-text');
+      
+      errorEl.textContent = errorString;
+}
+
 let title;
 
 const myWidget = cloudinary.createUploadWidget(
@@ -31,9 +46,9 @@ const sendImage = async (imageData) => {
             cloudImageData = '';
             document.location.replace('/dashboard');
         } else {
-            alert (response.statusText);
+            displayModal('Unable to upload to the server');
         }
-    }
+    } 
 }
 
 // addeventlistener code:
@@ -42,6 +57,6 @@ document.querySelector('#upload-widget').addEventListener('click', async functio
     if(title){
         await myWidget.open();
     } else {
-        alert('Invalid title');
+        displayModal('Please enter a title for the meme');
     }
 }, false);
