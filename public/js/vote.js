@@ -15,7 +15,6 @@ async function voteClickHandler(event){
             if(btnClick.dataset.page === 'single-post'){
                 document.location.reload();
             }
-            console.log(btnClick.dataset.page);
             if(btnClick.dataset.page === 'dashboard'){
                 document.location.reload();
             }
