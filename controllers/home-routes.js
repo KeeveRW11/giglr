@@ -114,6 +114,7 @@ router.get("/post/:id", (req, res) => {
         singlePage: true,
         pageName:'single-post'
       });
+      //res.json(dbPostData);
     })
     .catch((err) => {
       console.log(err);

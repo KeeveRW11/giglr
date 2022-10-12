@@ -1,4 +1,4 @@
-<section class="d-flex justify-content-around flex-wrap mt-3"> 
+<section id="meme" class="d-flex justify-content-around flex-wrap mt-3"> 
     {{#if posts.length}}
     {{!-- Blank --}}
     {{else}}
@@ -17,8 +17,8 @@
                     <div class="card-body">
                         <h5 class="card-text">By: {{post.user.username}}</h5>
                         <div class="d-flex justify-content-around flex-wrap">
-                            <button type="button" class="btn btn-secondary" id="vote-btn" data-id="{{post.id}}" data-page="{{pageName}}"><span class="fa-regular fa-circle-up" id="vote-btn" data-id="{{post.id}}" data-page="{{pageName}}"></span> {{post.vote_count}}</button>
-                            <button type="button" class="btn btn-secondary" id="comment-btn" data-id="{{post.id}}" data-page="{{pageName}}" data-toggle="modal" data-target="#add-comments"><i class="fa-regular fa-comment" id="comment-btn" data-id="{{post.id}}" data-page="{{pageName}}"></i> {{post.comments.length}}</button>                 
+                            <button type="button" class="btn btn-secondary" id="vote-btn" data-id="{{post.id}}" data-page="dashboard"><span class="fa-regular fa-circle-up" id="vote-btn" data-id="{{post.id}}" data-page="dashboard"></span> {{post.vote_count}}</button>
+                            <button type="button" class="btn btn-secondary" id="comment-btn" data-id="{{post.id}}" data-page="dashboard" data-toggle="modal" data-target="#add-comments"><i class="fa-regular fa-comment" id="comment-btn" data-id="{{post.id}}" data-page="dashboard"></i> {{post.comments.length}}</button>                 
                         </div>                                           
                     </div>
                     <div class="card-body">
