@@ -4,11 +4,10 @@ const { User, Post, Vote, Comment } = require('../../models');
 // get all users
 router.get('/', (req,res) => {
     User.findAll({
-        attributes: {exclude: ['password']} //all attributes excluding password
+        attributes: {exclude: ['password']}
     }) 
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
-            console.log(err);
             res.status(500).json(err);
         });
 });
@@ -16,7 +15,6 @@ router.get('/', (req,res) => {
 // get one user by id and associated posts etc.
 router.get('/:id', (req,res)=>{
     User.findOne({
-        //TODO: figure out what we need to include from other tables Post, Comments, Post through Vote
         include: [
             {
                 model: Post,
@@ -30,23 +28,6 @@ router.get('/:id', (req,res)=>{
                     attributes: ['title']
                 }
             }],
-
-        
-        //     {
-        //         model: Post,
-        //         attributes: ['title'],
-        //         through: Vote,
-        //         as: 'voted_posts'
-        //     }
-        // ],
-
-         //     {
-        //         model: Post,
-        //         attributes: ['title'],
-        //         through: Downvote,
-        //         as: 'downvoted_posts'
-        //     }
-        // ],
         
         attributes: {exclude: ['password']},
         where: {
@@ -61,14 +42,12 @@ router.get('/:id', (req,res)=>{
             res.json(dbUserData);
         })
         .catch(err=>{
-            console.log(err);
             res.status(500).json(err);
         })
 });
 
 //create user
 router.post('/', (req,res)=> {
-    //expects {username: 'string', email: '<string>@<string>.<string>', password: 'string'}
     User.create({
         username: req.body.username,
         password: req.body.password
@@ -83,34 +62,27 @@ router.post('/', (req,res)=> {
             });
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json(err);
         })
 });
 
 router.post('/login',(req,res)=>{
-    //Query operation
     User.findOne({
         where:{
             username: req.body.username
         }
     })
     .then(dbUserData=>{
-        console.log(dbUserData)
         if(!dbUserData){
             res.status(400).json({message: 'No user with that username!'});
             return;
         }
-
-        //Verify user
         const validPassword = dbUserData.checkPassword(req.body.password);
         
         if (!validPassword) {
             res.status(400).json({message: 'Incorrect password!'});
             return;
         }
-
-        //sessions
         req.session.save(()=>{
             
             req.session.user_id = dbUserData.id;
@@ -137,7 +109,6 @@ router.put('/:id', (req,res)=>{
             res.json(dbUserData);
         })
         .catch(err=>{
-            console.log(err);
             res.status(500).json(err);
         })
 });
@@ -156,7 +127,6 @@ router.delete('/:id', (req,res)=>{
             res.json(dbUserData);
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json(err)
         })
 });
