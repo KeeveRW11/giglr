@@ -1,3 +1,18 @@
+function displayModal(errorString){
+  var galleryModal = new bootstrap.Modal(
+      document.getElementById("error-handling"),
+      {
+        keyboard: false,
+      }
+    );
+    
+    galleryModal.show();
+    
+    const errorEl = document.querySelector('#error-text');
+    
+    errorEl.textContent = errorString;
+}
+
 async function loginFormHandler(event) {
     event.preventDefault();
   
@@ -17,8 +32,13 @@ async function loginFormHandler(event) {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alert(response.statusText);
+        if(response.statusText){
+          displayModal('Invalid credentials');
+        }
+        
       }
+    } else {
+      displayModal('Please enter all the required information');
     }
 
 }
