@@ -1,19 +1,27 @@
 const router = require('express').Router();
+const { response } = require('express');
 const { User, Post, Vote, Comment } = require('../../models');
 
 // get all users
 router.get('/', (req,res) => {
-    User.findAll({
-        attributes: {exclude: ['password']}
-    }) 
-        .then(dbUserData => res.json(dbUserData))
-        .catch(err => {
-            res.status(500).json(err);
-        });
+    res.status(404).end();
+    // User.findAll({
+    //     attributes: {exclude: ['password']}
+    // }) 
+    //     .then(dbUserData => res.json(dbUserData))
+    //     .catch(err => {
+    //         res.status(500).json(err);
+    //     });
 });
 
 // get one user by id and associated posts etc.
 router.get('/:id', (req,res)=>{
+    console.log(typeof (req.session.user_id), typeof (req.params.id))
+    if (!req.session.loggedIn) {
+        res.status(404).end();
+        return;
+    }
+    if (req.params.id ===  req.session.user_id.toString()) {
     User.findOne({
         include: [
             {
@@ -44,6 +52,9 @@ router.get('/:id', (req,res)=>{
         .catch(err=>{
             res.status(500).json(err);
         })
+    } else {
+        res.status(404).end();    
+    }    
 });
 
 //create user
