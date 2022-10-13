@@ -1,3 +1,18 @@
+function displayModal(errorString){
+    var galleryModal = new bootstrap.Modal(
+        document.getElementById("error-handling"),
+        {
+          keyboard: false,
+        }
+      );
+      
+      galleryModal.show();
+      
+      const errorEl = document.querySelector('#error-text');
+      
+      errorEl.textContent = errorString;
+}
+
 let post_id;
 
 async function commentFormHandler(event) {
@@ -21,7 +36,7 @@ async function commentFormHandler(event) {
             post_id = '';
             document.location.reload();
         } else {
-            alert(response.statusText);
+            displayModal('Unable to post comment at this time');
         }
 
     }
