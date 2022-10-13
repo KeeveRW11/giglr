@@ -4,8 +4,26 @@
     {{else}}
     <span>No posts to show</span>
     
-    {{/if}} 
-    {{#each posts as |post|}}
-        {{> meme post}}
-    {{/each}}         
+    {{/if}}
+        <section class="d-flex justify-content-around flex-wrap">                    
+            <div class="row">                
+                <div class="col-12 mx-4">
+                    {{#each posts as |post|}}
+                        {{#if post.column1}} 
+                            {{> meme post}}
+                        {{/if}}
+                    {{/each}}
+                </div>                
+            </div>
+            
+            <div class="row">                
+                <div class="col-12">
+                    {{#each posts as |post|}}
+                        {{#if post.column2}} 
+                            {{> meme post}}
+                        {{/if}}
+                    {{/each}}
+                </div>                
+            </div>
+        </section>         
 </section>
