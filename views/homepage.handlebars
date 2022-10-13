@@ -1,0 +1,11 @@
+<section class="d-flex justify-content-around flex-wrap">
+    {{#if posts.length}}
+    {{!-- Blank --}}
+    {{else}}
+    <span>No posts to show</span>
+    
+    {{/if}} 
+    {{#each posts as |post|}}
+        {{> meme post}}
+    {{/each}}         
+</section>
