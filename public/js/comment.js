@@ -29,7 +29,7 @@ async function commentFormHandler(event) {
 
 async function commentClickHandler(event) {
     const commentButton = event.target;
-
+    post_id = '';
     if (commentButton.matches('#comment-btn')) {
         post_id = commentButton.dataset.id;
     }
@@ -37,4 +37,4 @@ async function commentClickHandler(event) {
 }  
 
 document.querySelector('#add-comment-form').addEventListener('submit', commentFormHandler);
-document.querySelector('.edit-meme-form').addEventListener('click', commentClickHandler)
+document.querySelector('#meme').addEventListener('click', commentClickHandler)
