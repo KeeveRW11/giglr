@@ -14,8 +14,8 @@
                 </div>                                           
             </div>
             <div class="card-body">
-                <button form="{{@index}}" type="submit" class="btn btn-dark" id="save-button">Update</button>
-                <button form="{{@index}}" type="submit" class="btn btn-danger" id="delete-button">Delete</button>
+                <button form="{{@index}}" type="submit" class="btn btn-dark" id="save-button" data-id="{{id}}">Update</button>
+                <button form="{{@index}}" type="submit" class="btn btn-danger" id="delete-button" data-id="{{id}}">Delete</button>
             </div>
             {{#each comments as |comment|}}
             <div class="card-body border-top border-secondary d-flex flex-column">
@@ -26,3 +26,5 @@
         </div>
     </form>
 </article>
+
+<script src="/js/edit.js"></script>
