@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
       },
       {
         model: User,
-        attribtues: ["username"],
+        attributes: ["username"],
       },
     ],
   })
@@ -62,7 +62,7 @@ router.get("/upload", withAuth, (req, res) => {
   res.render("upload", { loggedIn:req.session.loggedIn, upload: true });
 });
 
-router.get("/post/:id", (req, res) => {
+router.get("/post/:id", withAuth, (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
