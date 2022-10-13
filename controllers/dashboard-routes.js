@@ -45,7 +45,6 @@ router.get('/', withAuth,  (req,res)=>{
                         return post;
                     }                    
                 })
-                console.log(posts);
             res.render('dashboard', {posts, loggedIn: req.session.loggedIn, dashboard:true})
         })
         .catch(err=>{
