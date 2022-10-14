@@ -16,11 +16,8 @@ function displayModal(errorString){
 async function editFormHandler (event) {
     event.preventDefault();
 
-    // const title = event.target.querySelector('input[name="post-title"]').value.trim();
-    // const idContainer = event.target.querySelector('div[class="card border border-dark"]');
-    // const id = idContainer.getAttribute('id');
-
     const btnClick = event.target;
+    const title = document.getElementById(btnClick.dataset.id).value.trim();     
     
     if (btnClick.matches('#save-button')) {
         
