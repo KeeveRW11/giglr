@@ -31,8 +31,20 @@ router.get('/', withAuth,  (req,res)=>{
         ]
     })
         .then(dbPostData=>{
+            let counter = 0;
             //serialize data before passing to template
             const posts = dbPostData.map(post=>post.get({plain: true}))
+                .map(post => {                    
+                    if(counter % 2 === 0){
+                        counter++;
+                        post.column1 = true;
+                        return post;
+                    }else {
+                        counter++;
+                        post.column2 = true;
+                        return post;
+                    }                    
+                })
             res.render('dashboard', {posts, loggedIn: req.session.loggedIn, dashboard:true})
         })
         .catch(err=>{

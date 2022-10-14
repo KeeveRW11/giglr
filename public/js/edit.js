@@ -16,13 +16,15 @@ function displayModal(errorString){
 async function editFormHandler (event) {
     event.preventDefault();
 
-    const title = event.target.querySelector('input[name="post-title"]').value.trim();
-    const idContainer = event.target.querySelector('div[class="card border border-dark"]');
-    const id = idContainer.getAttribute('id');
+    // const title = event.target.querySelector('input[name="post-title"]').value.trim();
+    // const idContainer = event.target.querySelector('div[class="card border border-dark"]');
+    // const id = idContainer.getAttribute('id');
+
+    const btnClick = event.target;
     
-    if (event.submitter.id === 'save-button') {
+    if (btnClick.matches('#save-button')) {
         
-        const response = await fetch (`api/posts/${id}`, {
+        const response = await fetch (`api/posts/${btnClick.dataset.id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 title
@@ -43,9 +45,9 @@ async function editFormHandler (event) {
             displayModal('Unable to update the post');
            }
         }
-    } else if (event.submitter.id === 'delete-button') {
+    } else if (btnClick.matches('#delete-button')) {
         
-        const response = await fetch (`api/posts/${id}`, {
+        const response = await fetch (`api/posts/${btnClick.dataset.id}`, {
             method: 'DELETE',
         })
     
@@ -64,7 +66,8 @@ async function editFormHandler (event) {
 
 }
 
-document.querySelectorAll('.edit-meme-form').forEach(item=>{
-    item.addEventListener('submit', editFormHandler)
-});
+// document.querySelectorAll('.edit-meme-form').forEach(item=>{
+//     item.addEventListener('submit', editFormHandler)
+// });
 
+document.querySelector('#meme').addEventListener('click', editFormHandler);

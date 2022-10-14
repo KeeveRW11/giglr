@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
           "(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)"
         ),
         "vote_count",
-      ]
+      ],
     ],
     include: [
       {
@@ -33,7 +33,20 @@ router.get("/", (req, res) => {
     ],
   })
     .then((dbPostData) => {
-      const posts = dbPostData.map((post) => post.get({ plain: true }));
+      let counter = 0;
+      const posts = dbPostData
+        .map((post) => post.get({ plain: true }))
+        .map((post) => {
+          if (counter % 2 === 0) {
+            counter++;
+            post.column1 = true;
+            return post;
+          } else {
+            counter++;
+            post.column2 = true;
+            return post;
+          }        
+        });
       res.render("homepage", {
         posts,
         loggedIn: req.session.loggedIn,
@@ -59,7 +72,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.get("/upload", withAuth, (req, res) => {
-  res.render("upload", { loggedIn:req.session.loggedIn, upload: true });
+  res.render("upload", { loggedIn: req.session.loggedIn, upload: true });
 });
 
 router.get("/post/:id", withAuth, (req, res) => {
@@ -108,7 +121,7 @@ router.get("/post/:id", withAuth, (req, res) => {
         post,
         loggedIn: req.session.loggedIn,
         singlePage: true,
-        pageName:'single-post'
+        pageName: "single-post",
       });
     })
     .catch((err) => {

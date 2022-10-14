@@ -1,0 +1,30 @@
+<article class="mb-3">
+    <form action="" class="edit-meme-form" id="{{@index}}">
+        <div class="card border border-dark" style="max-width: 480px;" id="{{id}}">
+            <div class="card-body">
+                <input type="text" class="form-control" name="post-title" value="{{title}}">                        
+            </div>
+            <img src="{{post_url}}" class="card-img-top img-fluid" alt="...">
+            
+            <div class="card-body">
+                <h5 class="card-text">By: {{post.user.username}}</h5>
+                <div class="d-flex justify-content-around flex-wrap">
+                    <button type="button" class="btn btn-secondary" id="vote-btn" data-id="{{id}}" data-page="dashboard"><span class="fa-regular fa-circle-up" id="vote-btn" data-id="{{id}}" data-page="dashboard"></span> {{vote_count}}</button>
+                    <button type="button" class="btn btn-secondary" id="comment-btn" data-id="{{id}}" data-page="dashboard" data-toggle="modal" data-target="#add-comments"><i class="fa-regular fa-comment" id="comment-btn" data-id="{{id}}" data-page="dashboard"></i> {{comments.length}}</button>                 
+                </div>                                           
+            </div>
+            <div class="card-body">
+                <button form="{{@index}}" type="submit" class="btn btn-dark" id="save-button" data-id="{{id}}">Update</button>
+                <button form="{{@index}}" type="submit" class="btn btn-danger" id="delete-button" data-id="{{id}}">Delete</button>
+            </div>
+            {{#each comments as |comment|}}
+            <div class="card-body border-top border-secondary d-flex flex-column">
+                <span class="font-weight-bold">{{comment.user.username}}</span>
+                <span>{{comment_text}}</span>
+            </div>
+            {{/each}}                
+        </div>
+    </form>
+</article>
+
+<script src="/js/edit.js"></script>
